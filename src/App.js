@@ -1,25 +1,58 @@
-import logo from './logo.svg';
+import React, { Component } from "react";
+
+import Counter from "./components/Counter";
+import MyName from "./components/MyName";
+import MyComponent from "./components/MyComponent";
+import PhoneForm from "./components/PhoneForm";
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    counter: 1
+  };
+
+  // constructor(컴포넌트 초기설정)
+  constructor(props) {
+    super(props);
+    console.log("constructor");
+  }
+
+  // ComponentDidMount(DOM 관련 작업, 외부 라이브러리 연동, 이벤트 등록 등)
+  componentDidMount() {
+    console.log("ComponentDidMount");
+  }
+
+  handleClick = () => {
+    this.setState({
+      counter: this.state.counter + 1
+    });
+  };
+
+  handleCreate = (data) => {
+    console.log(data)
+  }
+
+  render() {
+    const nickname = "leedev";
+
+    return (
+      <div className="App">
+        <Counter />
+
+        <MyName name="breadLee" />
+        <MyName />
+        <div>
+          I'm <b>{nickname}</b>
+        </div>
+
+        <MyComponent value={this.state.counter} />
+        <button onClick={this.handleClick}>Click</button>
+
+        <PhoneForm onCreate={this.handleCreate} />
+      </div>
+    );
+  }
 }
 
 export default App;
