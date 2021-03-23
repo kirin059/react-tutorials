@@ -9,7 +9,8 @@ import './App.css';
 
 class App extends Component {
   state = {
-    counter: 1
+    counter: 1,
+    information: [],
   };
 
   // constructor(컴포넌트 초기설정)
@@ -29,8 +30,11 @@ class App extends Component {
     });
   };
 
+
   handleCreate = (data) => {
-    console.log(data)
+    this.setState({
+      information: this.state.information.concat(data)
+    })
   }
 
   render() {
@@ -50,6 +54,7 @@ class App extends Component {
         <button onClick={this.handleClick}>Click</button>
 
         <PhoneForm onCreate={this.handleCreate} />
+        {JSON.stringify(this.state.information)}
       </div>
     );
   }
