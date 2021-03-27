@@ -17,15 +17,25 @@ class PhoneForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.onCreate({
-            name: this.state.name,
-            phone: this.state.phone,
+        // App.js에서 만들어준 onCreate함수를 props로 받아온다
+        this.props.onCreate(this.state);
+        // this.props.onCreate({
+        //     name: this.state.name,
+        //     phone: this.state.phone,
+        // })
+
+        // 입력한 후 input안의 값은 초기화 하기
+        this.setState({
+            name: '',
+            phone: '',
+
         })
     }
 
     render() {
         return (
             <div className="phoneform">
+                {/* form에 onSubmit함수를 추가 해주면, 전송 버튼을 클릭할 때 함수를 호출하라는 뜻  */}
                 <form onSubmit={this.handleSubmit}>
                     <input
                         name="name"

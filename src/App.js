@@ -8,6 +8,8 @@ import PhoneForm from "./components/PhoneForm";
 import './App.css';
 
 class App extends Component {
+  id = 0;
+
   state = {
     counter: 1,
     information: [],
@@ -33,7 +35,11 @@ class App extends Component {
 
   handleCreate = (data) => {
     this.setState({
-      information: this.state.information.concat(data)
+      // 기존 배열은 수정하지 않고, concat을 사용하여 새로운 배열을 생성한다(react의 불변성)
+      information: this.state.information.concat({
+        ...data,
+        id: this.id++,  // input값이 추가될수록 id가 하나씩 추가
+      })
     })
   }
 
